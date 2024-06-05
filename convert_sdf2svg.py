@@ -21,7 +21,7 @@ from rdkit.Chem import AllChem, Draw
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description="Program to convert .sdf file to 2D structure image file", formatter_class=argparse.RawTextHelpFormatter)
 	parser.add_argument("-i", dest="INPUT_SDF", metavar="INPUT.sdf", help="source .sdf file")
-	parser.add_argument("-o", dest="OUTPUT_PREFIX", metavar="OUTPUT_PREFIX", required=True, help="output image file")
+	parser.add_argument("-o", dest="OUTPUT_PREFIX", metavar="OUTPUT_PREFIX", default="", help="output image file")
 	parser.add_argument("-f", dest="OUTPUT_FORMAT", metavar="FORMAT", default=".png", help="output format")
 	parser.add_argument("--width", dest="OUTPUT_WIDTH", metavar="WIDTH", type=int, default=300, help="image width (Default: 300)")
 	parser.add_argument("--height", dest="OUTPUT_HEIGHT", metavar="HEIGHT", type=int, default=300, help="image height (Default: 300)")
