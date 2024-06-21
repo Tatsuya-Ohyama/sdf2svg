@@ -43,7 +43,6 @@ Copyright (c) 2024 Tatsuya Ohyama
 
 ## Authors
 * Tatsuya Ohyama
-convert_sdf2svg.py
 
 ## ChangeLog
 ### Ver. 1.3 (2024/06/21)
