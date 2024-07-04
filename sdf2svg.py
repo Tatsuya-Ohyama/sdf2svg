@@ -27,6 +27,7 @@ if __name__ == '__main__':
 	parser.add_argument("--width", dest="OUTPUT_WIDTH", metavar="WIDTH", type=int, default=300, help="image width (Default: 300)")
 	parser.add_argument("--height", dest="OUTPUT_HEIGHT", metavar="HEIGHT", type=int, default=300, help="image height (Default: 300)")
 	parser.add_argument("--keep-3D", dest="FLAG_KEEP_3D", action="store_true", default=False, help="output 3D structure")
+	parser.add_argument("--label", dest="FLAG_ADD_LABEL", action="store_true", default=False, help="add label (Default: False)")
 	parser.add_argument("-O", dest="FLAG_OVERWRITE", action="store_true", default=False, help="overwrite forcibly")
 	parser.add_argument("-l", dest="FLAG_SHOW_PROP_NAMES", action="store_true", default=False, help="show PROP_NAME list and exit")
 	args = parser.parse_args()
@@ -80,5 +81,5 @@ if __name__ == '__main__':
 			AllChem.Compute2DCoords(obj_mol)
 
 		# output image
-		Draw.MolToFile(obj_mol, output_file, size=(args.OUTPUT_WIDTH, args.OUTPUT_HEIGHT))
+		Draw.MolToFile(obj_mol, output_file, size=(args.OUTPUT_WIDTH, args.OUTPUT_HEIGHT), legend=obj_mol.GetProp(args.PROP_NAME))
 		print("output:", output_file)
