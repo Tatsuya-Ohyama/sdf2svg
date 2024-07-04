@@ -23,7 +23,7 @@ if __name__ == '__main__':
 	parser.add_argument("-i", dest="INPUT_SDF", metavar="INPUT.sdf", help="source .sdf file")
 	parser.add_argument("-o", dest="OUTPUT_PREFIX", metavar="OUTPUT_PREFIX", default="", help="output image file")
 	parser.add_argument("-f", dest="OUTPUT_FORMAT", metavar="FORMAT", default=".png", help="output format (starts with period)")
-	parser.add_argument("-k", dest="PROP_NAME", metavar="PROP_NAME", required="-l" not in sys.argv, help="property name of unique name")
+	parser.add_argument("-p", dest="PROP_NAME", metavar="PROP_NAME", required="-l" not in sys.argv, help="property name of unique name")
 	parser.add_argument("--width", dest="OUTPUT_WIDTH", metavar="WIDTH", type=int, default=300, help="image width (Default: 300)")
 	parser.add_argument("--height", dest="OUTPUT_HEIGHT", metavar="HEIGHT", type=int, default=300, help="image height (Default: 300)")
 	parser.add_argument("--keep-3D", dest="FLAG_KEEP_3D", action="store_true", default=False, help="output 3D structure")
