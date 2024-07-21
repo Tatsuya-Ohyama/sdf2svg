@@ -27,6 +27,8 @@ Option
 	: image height (Default: 300)
 * `--keep-3D`
 	: output 3D structure
+* `--label`
+	: add label for each structure
 * `-O`
 	: overwrite forcibly
 * `-l`
@@ -50,6 +52,8 @@ Copyright (c) 2024 Tatsuya Ohyama
 ## ChangeLog
 ### Ver. 1.4 (2024/07/03)
 * Add `--keep-3D` option.
+* Add `--label` option.
+* Change `-k` option to `-p` option.
 
 ### Ver. 1.3 (2024/06/21)
 * Rename program name (convert_sdf2svg.py -> sdf2svg.py)
