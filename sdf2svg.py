@@ -26,8 +26,7 @@ if __name__ == '__main__':
 	parser.add_argument("-o", dest="OUTPUT_PREFIX", metavar="OUTPUT_PREFIX", default="", help="output image file")
 	parser.add_argument("-f", dest="OUTPUT_FORMAT", metavar="FORMAT", default=".png", choices=[".png", ".svg"], help="output format (starts with period)")
 	parser.add_argument("-p", dest="PROP_NAME", metavar="PROP_NAME", required="-l" not in sys.argv, help="property name of unique name (for using output filepath and label)")
-	parser.add_argument("--width", dest="OUTPUT_WIDTH", metavar="WIDTH", type=int, default=300, help="image width (Default: 300)")
-	parser.add_argument("--height", dest="OUTPUT_HEIGHT", metavar="HEIGHT", type=int, default=300, help="image height (Default: 300)")
+	parser.add_argument("-s", dest="SIZE", metavar="SIZE", type=int, default=300, help="image size (Default: 300)")
 	parser.add_argument("--keep-3D", dest="FLAG_KEEP_3D", action="store_true", default=False, help="output 3D structure")
 	parser.add_argument("--label", dest="FLAG_ADD_LABEL", action="store_true", default=False, help="add label (Default: False)")
 	parser.add_argument("--grid", dest="GRID_OPTION", metavar="MxN", default=None, help="draw molecules in grid by M x N (Default: None)")
@@ -90,7 +89,7 @@ if __name__ == '__main__':
 			if args.FLAG_ADD_LABEL:
 				legend = obj_mol.GetProp(args.PROP_NAME)
 
-			Draw.MolToFile(obj_mol, output_file, size=(args.OUTPUT_WIDTH, args.OUTPUT_HEIGHT), legend=legend)
+			Draw.MolToFile(obj_mol, output_file, size=(args.SIZE, args.SIZE), legend=legend)
 
 			print("output:", output_file)
 
@@ -150,7 +149,7 @@ if __name__ == '__main__':
 				img = Draw.MolsToGridImage(
 					list_obj_mol_grid,
 					molsPerRow=n_col,
-					subImgSize=(args.OUTPUT_WIDTH, args.OUTPUT_HEIGHT),
+					subImgSize=(args.SIZE, args.SIZE),
 					legends=legends,
 					useSVG=useSVG
 				)

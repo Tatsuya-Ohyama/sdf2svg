@@ -6,7 +6,7 @@ Program to convert .sdf file to 2D structure image file
 
 ## 使用方法
 ```sh
-$ sdf2svg.py [-h] [-i INPUT.sdf] [-o OUTPUT_PREFIX] [-f FORMAT] -k PROP_NAME [--width WIDTH] [--height HEIGHT] [--keep-3D] [-O] [-l]
+sdf2svg.py [-h] [-i INPUT.sdf] [-o OUTPUT_PREFIX] [-f FORMAT] -p PROP_NAME [-s SIZE] [--keep-3D] [--label] [--grid MxN] [-O] [-l]
 ```
 
 Option
@@ -16,23 +16,24 @@ Option
 * `-i INPUT.sdf`
 	: source .sdf file
 * `-o OUTPUT_PREFIX`
-	: output prefix
+	: output image file
 * `-f FORMAT`
-	: output format (starts with period) (".png" and ".svg")
-* `-k PROP_NAME`
-	: property name of unique name
-* `--width WIDTH`
-	: image width (Default: 300)
-* `--height HEIGHT`
-	: image height (Default: 300)
+	: output format (starts with period)
+* `-p PROP_NAME`
+	: property name of unique name (for using output filepath and label)
+* `-s SIZE`
+	: image size (Default: 300)
 * `--keep-3D`
 	: output 3D structure
 * `--label`
-	: add label for each structure
+	: add label (Default: False)
+* `--grid MxN`
+	: draw molecules in grid by M x N (Default: None)
 * `-O`
 	: overwrite forcibly
 * `-l`
 	: show PROP_NAME list and exit
+
 
 
 ## 動作要件
@@ -52,6 +53,7 @@ Copyright (c) 2024 Tatsuya Ohyama
 ## ChangeLog
 ### Ver. 1.4 (2024/07/22)
 * Change `-k` option to `-p` option.
+* Remove `--width` and `--height` options and add `-s` option.
 * Add `--keep-3D` option.
 * Add `--label` option.
 * Add `--grid` option.
