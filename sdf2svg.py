@@ -45,14 +45,14 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description="Program to convert .sdf file to 2D structure image file", formatter_class=argparse.RawTextHelpFormatter)
 	parser.add_argument("-i", dest="INPUT_SDF", metavar="INPUT.sdf", help="source .sdf file")
 	parser.add_argument("-o", dest="OUTPUT_PREFIX", metavar="OUTPUT_PREFIX", default="", help="output image file")
-	parser.add_argument("-f", dest="OUTPUT_FORMAT", metavar="FORMAT", default=".png", choices=[".png", ".svg"], help="output format (starts with period)")
-	parser.add_argument("-p", dest="PROP_NAME", metavar="PROP_NAME", required="-l" not in sys.argv, help="property name of unique name (for using output filepath and label)")
-	parser.add_argument("-s", dest="SIZE", metavar="SIZE", type=int, default=300, help="image size (Default: 300)")
+	parser.add_argument("-f", "--format", dest="OUTPUT_FORMAT", metavar="FORMAT", default=".png", choices=[".png", ".svg"], help="output format (starts with period)")
+	parser.add_argument("-p", "--property", dest="PROP_NAME", metavar="PROP_NAME", required="-l" not in sys.argv, help="property name of unique name (for using output filepath and label)")
+	parser.add_argument("-s", "--size", dest="SIZE", metavar="SIZE", type=int, default=300, help="image size (Default: 300)")
 	parser.add_argument("--keep-3D", dest="FLAG_KEEP_3D", action="store_true", default=False, help="output 3D structure")
 	parser.add_argument("--label", dest="FLAG_ADD_LABEL", action="store_true", default=False, help="add label (Default: False)")
 	parser.add_argument("--grid", dest="GRID_OPTION", metavar="MxN", default=None, help="draw molecules in grid by M x N (Default: None)")
 	parser.add_argument("-O", dest="FLAG_OVERWRITE", action="store_true", default=False, help="overwrite forcibly")
-	parser.add_argument("-l", dest="FLAG_SHOW_PROP_NAMES", action="store_true", default=False, help="show PROP_NAME list and exit")
+	parser.add_argument("-l", "--list", dest="FLAG_SHOW_PROP_NAMES", action="store_true", default=False, help="show PROP_NAME list and exit")
 	args = parser.parse_args()
 
 	# check input file

@@ -6,7 +6,7 @@ Program to convert .sdf file to 2D structure image file
 
 ## 使用方法
 ```sh
-sdf2svg.py [-h] [-i INPUT.sdf] [-o OUTPUT_PREFIX] [-f FORMAT] -p PROP_NAME [-s SIZE] [--keep-3D] [--label] [--grid MxN] [-O] [-l]
+$ sdf2svg.py [-h] [-i INPUT.sdf] [-o OUTPUT_PREFIX] [-f FORMAT] -p PROP_NAME [-s SIZE] [--keep-3D] [--label] [--grid MxN] [-O] [-l]
 ```
 
 Option
@@ -17,11 +17,11 @@ Option
 	: source .sdf file
 * `-o OUTPUT_PREFIX`
 	: output image file
-* `-f FORMAT`
+* `-f FORMAT`, `--format FORMAT`
 	: output format (starts with period)
-* `-p PROP_NAME`
+* `-p PROP_NAME`, `--property PROP_NAME`
 	: property name of unique name (for using output filepath and label)
-* `-s SIZE`
+* `-s SIZE`, `--size SIZE`
 	: image size (Default: 300)
 * `--keep-3D`
 	: output 3D structure
@@ -31,7 +31,7 @@ Option
 	: draw molecules in grid by M x N (Default: None)
 * `-O`
 	: overwrite forcibly
-* `-l`
+* `-l`, `--list`
 	: show PROP_NAME list and exit
 
 
