@@ -50,10 +50,11 @@ Copyright (c) 2024 Tatsuya Ohyama
 * Tatsuya Ohyama
 
 ## ChangeLog
-### Ver. 1.4 (2024/07/03)
+### Ver. 1.4 (2024/07/22)
+* Change `-k` option to `-p` option.
 * Add `--keep-3D` option.
 * Add `--label` option.
-* Change `-k` option to `-p` option.
+* Add `--grid` option.
 
 ### Ver. 1.3 (2024/06/21)
 * Rename program name (convert_sdf2svg.py -> sdf2svg.py)
