@@ -19,6 +19,27 @@ RE_GRID = re.compile(r"^(\d+)x(\d+)$")
 
 
 
+# =============== function =============== #
+def output_grid(output_file, list_obj_mol, list_label=None):
+	useSVG = False
+	ftype = "wb"
+	if os.path.splitext(output_file)[1] == ".svg":
+		useSVG = True
+		ftype = "w"
+
+	img = Draw.MolsToGridImage(
+		list_obj_mol,
+		molsPerRow=n_col,
+		subImgSize=(args.SIZE, args.SIZE),
+		legends=list_label,
+		useSVG=useSVG
+	)
+
+	with open(output_file, ftype) as obj_output:
+		obj_output.write(img)
+
+
+
 # =============== main =============== #
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description="Program to convert .sdf file to 2D structure image file", formatter_class=argparse.RawTextHelpFormatter)
@@ -102,9 +123,7 @@ if __name__ == '__main__':
 
 		n_row, n_col = int(obj_match.group(1)), int(obj_match.group(2))
 		grid_max = n_row * n_col
-
 		list_obj_mol_grid = []
-
 		n_output = 0
 		for mol_i, obj_mol in enumerate(Chem.SDMolSupplier(args.INPUT_SDF), 1):
 			if obj_mol is None:
@@ -136,25 +155,19 @@ if __name__ == '__main__':
 							list_obj_mol_grid = []
 							continue
 
-				legends = None
 				if args.FLAG_ADD_LABEL:
 					legends = [v.GetProp(args.PROP_NAME) for v in list_obj_mol_grid]
 
-				useSVG = False
-				ftype = "wb"
-				if args.OUTPUT_FORMAT == ".svg":
-					useSVG = True
-					ftype = "w"
-
-				img = Draw.MolsToGridImage(
-					list_obj_mol_grid,
-					molsPerRow=n_col,
-					subImgSize=(args.SIZE, args.SIZE),
-					legends=legends,
-					useSVG=useSVG
-				)
-
-				with open(output_file, ftype) as obj_output:
-					obj_output.write(img)
-
+				output_grid(output_file, list_obj_mol_grid, list_label=legends)
+				print("output:", output_file)
 				list_obj_mol_grid = []
+
+		if len(list_obj_mol_grid) != 0:
+			n_output += 1
+			output_file = "{}{}-{}{}".format(args.OUTPUT_PREFIX, args.GRID_OPTION, n_output, args.OUTPUT_FORMAT)
+
+			if args.FLAG_ADD_LABEL:
+				legends = [v.GetProp(args.PROP_NAME) for v in list_obj_mol_grid]
+
+			output_grid(output_file, list_obj_mol_grid, list_label=legends)
+			print("output:", output_file)
