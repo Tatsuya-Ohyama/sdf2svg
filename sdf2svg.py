@@ -46,7 +46,7 @@ if __name__ == '__main__':
 	parser.add_argument("-i", dest="INPUT_SDF", metavar="INPUT.sdf", help="source .sdf file")
 	parser.add_argument("-o", dest="OUTPUT_PREFIX", metavar="OUTPUT_PREFIX", default="", help="output image file")
 	parser.add_argument("-f", "--format", dest="OUTPUT_FORMAT", metavar="FORMAT", default=".png", choices=[".png", ".svg"], help="output format (starts with period)")
-	parser.add_argument("-p", "--property", dest="PROP_NAME", metavar="PROP_NAME", required="-l" not in sys.argv, help="property name of unique name (for using output filepath and label)")
+	parser.add_argument("-p", "--property", dest="PROP_NAME", metavar="PROP_NAME", default="_Name", help="property name of unique name (for using output filepath and label)")
 	parser.add_argument("-s", "--size", dest="SIZE", metavar="SIZE", type=int, default=300, help="image size (Default: 300)")
 	parser.add_argument("--keep-3D", dest="FLAG_KEEP_3D", action="store_true", default=False, help="output 3D structure")
 	parser.add_argument("--label", dest="FLAG_ADD_LABEL", action="store_true", default=False, help="add label (Default: False)")
@@ -78,17 +78,26 @@ if __name__ == '__main__':
 		os.makedirs(output_dir)
 
 	# output image
+	list_mol_names = []
 	if args.GRID_OPTION is None:
 		# for each structure
 		for mol_i, obj_mol in enumerate(Chem.SDMolSupplier(args.INPUT_SDF), 1):
 			if obj_mol is None:
 				continue
 
-			if args.PROP_NAME not in obj_mol.GetPropNames():
+			if args.PROP_NAME != "_Name" and args.PROP_NAME not in obj_mol.GetPropNames():
 				sys.stderr.write("WARNING: Not found PROP_NAME `{}` at {} th molecule. Skipped...\n".format(args.PROP_NAME, mol_i))
 				continue
 
 			mol_name = obj_mol.GetProp(args.PROP_NAME)
+			if mol_name is None or mol_name == "":
+				mol_name = "{}_{}".format(os.path.splitext(os.path.basename(args.INPUT_SDF))[0], mol_i)
+
+			if mol_name in list_mol_names:
+				mol_name = "{}_{}".format(mol_name, mol_i)
+
+			list_mol_names.append(mol_name)
+
 			output_file = "{}{}{}".format(args.OUTPUT_PREFIX, mol_name, args.OUTPUT_FORMAT)
 
 			if args.FLAG_OVERWRITE == False:
