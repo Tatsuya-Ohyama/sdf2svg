@@ -51,6 +51,11 @@ Copyright (c) 2024 Tatsuya Ohyama
 * Tatsuya Ohyama
 
 ## ChangeLog
+### Ver. 1.5 (2024/09/05)
+* Change `-p` from a required option to an optional one.
+* Suppress output file name duplication.
+* Support large ring structure.
+
 ### Ver. 1.4 (2024/07/22)
 * Change `-k` option to `-p` option.
 * Remove `--width` and `--height` options and add `-s` option.

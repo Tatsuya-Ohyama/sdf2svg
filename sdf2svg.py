@@ -77,6 +77,8 @@ if __name__ == '__main__':
 	if len(output_dir) != 0 and not os.path.isdir(output_dir):
 		os.makedirs(output_dir)
 
+	Chem.rdDepictor.SetPreferCoordGen(True)
+
 	# output image
 	list_mol_names = []
 	if args.GRID_OPTION is None:
