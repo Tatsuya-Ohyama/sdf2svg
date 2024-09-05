@@ -6,7 +6,7 @@ Program to convert .sdf file to 2D structure image file
 
 ## 使用方法
 ```sh
-$ sdf2svg.py [-h] [-i INPUT.sdf] [-o OUTPUT_PREFIX] [-f FORMAT] -p PROP_NAME [-s SIZE] [--keep-3D] [--label] [--grid MxN] [-O] [-l]
+$ sdf2svg.py [-h] [-i INPUT.sdf] [-o OUTPUT_PREFIX] [-f FORMAT] [-p PROP_NAME] [-s SIZE] [--keep-3D] [--label] [--grid MxN] [-O] [-l]
 ```
 
 Option
